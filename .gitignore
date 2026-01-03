@@ -1,55 +1,289 @@
-# dbt
+# ============================================
+# IDEA VAULT - .gitignore
+# ============================================
+
+# ============================================
+# DADOS PESSOAIS - NUNCA COMMITAR!
+# ============================================
+# Extratos e faturas do Nubank
+dbt/seeds/NU_*.csv
+dbt/seeds/Nubank_*.csv
+dbt/seeds/*extrato*.csv
+dbt/seeds/*fatura*.csv
+
+# Qualquer arquivo com dados sensíveis
+*.personal.csv
+*.private.*
+
+# ============================================
+# PYTHON
+# ============================================
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+.Python
+
+# Bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+dist/
+build/
+eggs/
+*.egg-info/
+*.egg
+.eggs/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+pytest_cache/
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IPython
+profile_default/
+ipython_config.py
+
+# ============================================
+# NODE.JS / FRONTEND
+# ============================================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+.pnpm-store/
+
+# Build outputs
+dist/
+dist-ssr/
+*.local
+
+# ============================================
+# DBT
+# ============================================
 dbt/target/
 dbt/dbt_packages/
 dbt/logs/
 dbt/.user.yml
+dbt/profiles/profiles.yml
 
-# Dados pessoais do Nubank - NAO COMMITAR!
-dbt/seeds/NU_*.csv
-dbt/seeds/Nubank_*.csv
-
-# Python
-.venv/
-venv/
-__pycache__/
-*.pyc
-.Python
-*.egg-info/
-dist/
-build/
-
-# ML
+# ============================================
+# MACHINE LEARNING
+# ============================================
+# Model files (large binaries)
+ml/models/*.pt
+ml/models/*.pth
+ml/models/*.onnx
 ml/models/*.joblib
 ml/models/*.pkl
-ml/models/*.pt
-*.h5
+ml/models/*.h5
+ml/models/*.keras
+ml/models/*.safetensors
 
-# Terraform
-infrastructure/.terraform/
-infrastructure/*.tfstate
-infrastructure/*.tfstate.backup
-infrastructure/.terraform.lock.hcl
-infrastructure/*.tfvars
+# Keep metadata files
+!ml/models/*metadata*.json
+!ml/models/README.md
 
-# IDE
-.idea/
-.vscode/
-*.swp
-*.swo
+# MLflow
+mlruns/
+mlartifacts/
 
-# OS
-.DS_Store
-Thumbs.db
+# Weights & Biases
+wandb/
 
-# Kubernetes
+# Data files
+*.parquet
+*.feather
+data/raw/
+data/processed/
+data/interim/
+
+# ============================================
+# TERRAFORM
+# ============================================
+# Local .terraform directories
+**/.terraform/
+
+# .tfstate files
+*.tfstate
+*.tfstate.*
+*.tfstate.backup
+
+# Crash log files
+crash.log
+crash.*.log
+
+# Exclude override files
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Include override example files
+!example_override.tf
+
+# Include tfvars example files
+!*.tfvars.example
+
+# Sensitive variable files
+*.tfvars
+*.auto.tfvars
+
+# CLI configuration files
+.terraformrc
+terraform.rc
+
+# Lock file (opcional - alguns times preferem commitar)
+.terraform.lock.hcl
+
+# ============================================
+# DOCKER
+# ============================================
+# Docker compose override
+docker-compose.override.yml
+docker-compose.local.yml
+
+# ============================================
+# KUBERNETES
+# ============================================
 *.kubeconfig
 kubeconfig
+*.kube/
 
-# Logs
+# ============================================
+# CREDENTIALS & SECRETS
+# ============================================
+.env
+.env.*
+!.env.example
+!.env.template
+
+secrets/
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+credentials.json
+service-account*.json
+
+# AWS
+.aws/
+
+# GCP
+.gcloud/
+gcloud-service-key.json
+
+# ============================================
+# IDE & EDITORS
+# ============================================
+# VSCode
+.vscode/
+!.vscode/extensions.json
+!.vscode/settings.json.example
+
+# JetBrains
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Vim
+*.swp
+*.swo
+*~
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+
+# Sublime Text
+*.sublime-workspace
+*.sublime-project
+
+# ============================================
+# OS GENERATED
+# ============================================
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.lnk
+desktop.ini
+
+# Linux
+*~
+
+# ============================================
+# LOGS & TEMP FILES
+# ============================================
 *.log
 logs/
+tmp/
+temp/
+*.tmp
+*.temp
+*.bak
+*.backup
 
-# Credentials
-.env
-.env.local
-secrets/
+# ============================================
+# MISC
+# ============================================
+# User-specific files
+.user.yml
+*.local
+
+# Test outputs
+test-results/
+test-output/
+
+# Package manager locks (keep yarn.lock, remove others if using yarn)
+# package-lock.json  # Uncomment if using yarn exclusively
+
+# Cursor AI
+.cursor/
+.cursorignore
