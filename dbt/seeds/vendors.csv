@@ -1,0 +1,70 @@
+vendor_id,vendor_nome,keywords,logo_url,icone_emoji,cor_hex,categoria_sugerida
+netflix,Netflix,"netflix,nflx","https://www.google.com/s2/favicons?domain=netflix.com&sz=128","🎬","#E50914",Assinaturas
+spotify,Spotify,"spotify,spotfy","https://www.google.com/s2/favicons?domain=spotify.com&sz=128","🎵","#1DB954",Assinaturas
+disney,Disney+,"disney,disney+","https://www.google.com/s2/favicons?domain=disneyplus.com&sz=128","🏰","#113CCF",Assinaturas
+hbo,HBO Max,"hbo,hbomax,max","https://www.google.com/s2/favicons?domain=max.com&sz=128","📺","#002BE7",Assinaturas
+prime,Amazon Prime,"prime video,amazon prime,primevideo","https://www.google.com/s2/favicons?domain=primevideo.com&sz=128","📦","#00A8E1",Assinaturas
+youtube,YouTube,"youtube,ytpremium,yt premium","https://www.google.com/s2/favicons?domain=youtube.com&sz=128","▶️","#FF0000",Assinaturas
+twitch,Twitch,"twitch","https://www.google.com/s2/favicons?domain=twitch.tv&sz=128","🎮","#9146FF",Assinaturas
+deezer,Deezer,"deezer","https://www.google.com/s2/favicons?domain=deezer.com&sz=128","🎧","#FF0092",Assinaturas
+globoplay,Globoplay,"globoplay,globo play","https://www.google.com/s2/favicons?domain=globoplay.globo.com&sz=128","📺","#F72B2B",Assinaturas
+paramount,Paramount+,"paramount","https://www.google.com/s2/favicons?domain=paramountplus.com&sz=128","⭐","#0064FF",Assinaturas
+ifood,iFood,"ifood,i food","https://www.google.com/s2/favicons?domain=ifood.com.br&sz=128","🍔","#EA1D2C",Alimentação
+rappi,Rappi,"rappi","https://www.google.com/s2/favicons?domain=rappi.com.br&sz=128","🛵","#FF441F",Alimentação
+uber_eats,Uber Eats,"uber eats,ubereats","https://www.google.com/s2/favicons?domain=ubereats.com&sz=128","🥡","#06C167",Alimentação
+zedel,Zé Delivery,"ze delivery,zedel,zedelivery","https://www.google.com/s2/favicons?domain=ze.delivery&sz=128","🍺","#F7D000",Alimentação
+uber,Uber,"uber trip,uber *","https://www.google.com/s2/favicons?domain=uber.com&sz=128","🚗","#000000",Transporte
+99,99,"99app,99 app,99pop,99*","https://www.google.com/s2/favicons?domain=99app.com&sz=128","🚕","#FFCB00",Transporte
+apple,Apple,"apple,icloud,app store,itunes","https://www.google.com/s2/favicons?domain=apple.com&sz=128","🍎","#000000",Compras Online
+google,Google,"google,goog,google play,google one","https://www.google.com/s2/favicons?domain=google.com&sz=128","🔍","#4285F4",Serviços
+amazon,Amazon,"amazon,amz,amazon.com","https://www.google.com/s2/favicons?domain=amazon.com.br&sz=128","📦","#FF9900",Compras Online
+mercadolivre,Mercado Livre,"mercado livre,mercadolivre,mercadopago,mercado pago","https://www.google.com/s2/favicons?domain=mercadolivre.com.br&sz=128","🛍️","#FFE600",Compras Online
+aliexpress,AliExpress,"aliexpress,ali express","https://www.google.com/s2/favicons?domain=aliexpress.com&sz=128","🛒","#E62E04",Compras Online
+shein,Shein,"shein","https://www.google.com/s2/favicons?domain=shein.com&sz=128","👗","#000000",Compras Online
+shopee,Shopee,"shopee","https://www.google.com/s2/favicons?domain=shopee.com.br&sz=128","🛒","#EE4D2D",Compras Online
+magalu,Magazine Luiza,"magalu,magazine luiza,magazineluiza","https://www.google.com/s2/favicons?domain=magazineluiza.com.br&sz=128","🛒","#0086FF",Compras Online
+americanas,Americanas,"americanas,americanas.com","https://www.google.com/s2/favicons?domain=americanas.com.br&sz=128","🛒","#E60014",Compras Online
+nubank,Nubank,"nubank,nu pagamentos,nu reserva","https://www.google.com/s2/favicons?domain=nubank.com.br&sz=128","💜","#820AD1",Pagamentos
+picpay,PicPay,"picpay","https://www.google.com/s2/favicons?domain=picpay.com&sz=128","💚","#21C25E",Pagamentos
+pagseguro,PagSeguro,"pagseguro,pag seguro","https://www.google.com/s2/favicons?domain=pagseguro.com.br&sz=128","💳","#00A94F",Pagamentos
+pix,PIX,"pix,transferencia pix,pix enviado,pix recebido","","💸","#32BCAD",Transferências
+ted,TED/DOC,"ted,doc,transferencia","","🏦","#1E3A5F",Transferências
+carrefour,Carrefour,"carrefour","https://www.google.com/s2/favicons?domain=carrefour.com.br&sz=128","🛒","#004E9A",Alimentação
+pao_acucar,Pão de Açúcar,"pao de acucar,paodeacucar,extra,extra hiper","https://www.google.com/s2/favicons?domain=paodeacucar.com&sz=128","🛒","#E4002B",Alimentação
+assai,Assaí,"assai,assai atacadista","https://www.google.com/s2/favicons?domain=assai.com.br&sz=128","🛒","#FFCC00",Alimentação
+atacadao,Atacadão,"atacadao","https://www.google.com/s2/favicons?domain=atacadao.com.br&sz=128","🛒","#0033A1",Alimentação
+shell,Shell,"shell,posto shell","https://www.google.com/s2/favicons?domain=shell.com.br&sz=128","⛽","#FBCE07",Transporte
+ipiranga,Ipiranga,"ipiranga,posto ipiranga,jet oil","https://www.google.com/s2/favicons?domain=ipiranga.com.br&sz=128","⛽","#0033A0",Transporte
+br,Petrobras BR,"petrobras,posto br,br mania","https://www.google.com/s2/favicons?domain=br.com.br&sz=128","⛽","#009639",Transporte
+drogasil,Drogasil,"drogasil","https://www.google.com/s2/favicons?domain=drogasil.com.br&sz=128","💊","#E30613",Saúde
+drogaraia,Droga Raia,"droga raia,drogaraia,raia","https://www.google.com/s2/favicons?domain=drogaraia.com.br&sz=128","💊","#00529B",Saúde
+pacheco,Drogarias Pacheco,"pacheco,drogarias pacheco","https://www.google.com/s2/favicons?domain=drogariaspacheco.com.br&sz=128","💊","#00A651",Saúde
+starbucks,Starbucks,"starbucks","https://www.google.com/s2/favicons?domain=starbucks.com.br&sz=128","☕","#00704A",Alimentação
+mcdonalds,McDonald's,"mcdonalds,mcd,mc donalds,méqui","https://www.google.com/s2/favicons?domain=mcdonalds.com.br&sz=128","🍟","#FFC72C",Alimentação
+burger_king,Burger King,"burger king,bk,burgerking","https://www.google.com/s2/favicons?domain=burgerking.com.br&sz=128","🍔","#D62300",Alimentação
+subway,Subway,"subway","https://www.google.com/s2/favicons?domain=subway.com&sz=128","🥪","#009743",Alimentação
+outback,Outback,"outback","https://www.google.com/s2/favicons?domain=outback.com.br&sz=128","🥩","#8B0000",Alimentação
+habibs,Habib's,"habibs,habib's","https://www.google.com/s2/favicons?domain=habibs.com.br&sz=128","🥙","#D4AF37",Alimentação
+renner,Renner,"renner,lojas renner","https://www.google.com/s2/favicons?domain=lojasrenner.com.br&sz=128","👔","#E30613",Vestuário e Beleza
+riachuelo,Riachuelo,"riachuelo","https://www.google.com/s2/favicons?domain=riachuelo.com.br&sz=128","👗","#000000",Vestuário e Beleza
+cea,C&A,"c&a,cea,c e a","https://www.google.com/s2/favicons?domain=cea.com.br&sz=128","👕","#E4002B",Vestuário e Beleza
+zara,Zara,"zara","https://www.google.com/s2/favicons?domain=zara.com&sz=128","👔","#000000",Vestuário e Beleza
+boticario,O Boticário,"boticario,o boticario,boticário","https://www.google.com/s2/favicons?domain=boticario.com.br&sz=128","💄","#006341",Vestuário e Beleza
+natura,Natura,"natura","https://www.google.com/s2/favicons?domain=natura.com.br&sz=128","🌿","#F26522",Vestuário e Beleza
+sephora,Sephora,"sephora","https://www.google.com/s2/favicons?domain=sephora.com.br&sz=128","💄","#000000",Vestuário e Beleza
+cinemark,Cinemark,"cinemark","https://www.google.com/s2/favicons?domain=cinemark.com.br&sz=128","🎬","#002855",Lazer
+cinepolis,Cinépolis,"cinepolis","https://www.google.com/s2/favicons?domain=cinepolis.com.br&sz=128","🎬","#0033A0",Lazer
+ingresso,Ingresso.com,"ingresso.com,ingresso","https://www.google.com/s2/favicons?domain=ingresso.com&sz=128","🎟️","#E31837",Lazer
+sympla,Sympla,"sympla","https://www.google.com/s2/favicons?domain=sympla.com.br&sz=128","🎫","#00D4AA",Lazer
+steam,Steam,"steam,valve","https://www.google.com/s2/favicons?domain=store.steampowered.com&sz=128","🎮","#171A21",Lazer
+playstation,PlayStation,"playstation,psn,sony playstation","https://www.google.com/s2/favicons?domain=playstation.com&sz=128","🎮","#003087",Lazer
+xbox,Xbox,"xbox,microsoft xbox","https://www.google.com/s2/favicons?domain=xbox.com&sz=128","🎮","#107C10",Lazer
+nintendo,Nintendo,"nintendo,eshop","https://www.google.com/s2/favicons?domain=nintendo.com&sz=128","🎮","#E60012",Lazer
+claro,Claro,"claro,claro brasil","https://www.google.com/s2/favicons?domain=claro.com.br&sz=128","📱","#DA291C",Telecomunicações
+vivo,Vivo,"vivo,telefonica","https://www.google.com/s2/favicons?domain=vivo.com.br&sz=128","📱","#660099",Telecomunicações
+tim,TIM,"tim,tim brasil","https://www.google.com/s2/favicons?domain=tim.com.br&sz=128","📱","#00348D",Telecomunicações
+oi,Oi,"oi,oi fibra","https://www.google.com/s2/favicons?domain=oi.com.br&sz=128","📱","#FFCC00",Telecomunicações
+enel,Enel,"enel,eletropaulo,light","https://www.google.com/s2/favicons?domain=enel.com.br&sz=128","💡","#003D7C",Moradia
+sabesp,Sabesp,"sabesp,agua","https://www.google.com/s2/favicons?domain=sabesp.com.br&sz=128","💧","#0066B3",Moradia
+comgas,Comgás,"comgas,gas natural","https://www.google.com/s2/favicons?domain=comgas.com.br&sz=128","🔥","#FF6600",Moradia
+

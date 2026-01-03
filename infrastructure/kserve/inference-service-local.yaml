@@ -1,0 +1,73 @@
+# InferenceService for local development (PVC-based storage)
+apiVersion: serving.kserve.io/v1beta1
+kind: InferenceService
+metadata:
+  name: anomaly-detector
+  namespace: ml-serving
+spec:
+  predictor:
+    sklearn:
+      # Use PVC for local development
+      storageUri: "pvc://ml-models-pvc/anomaly-detector"
+      resources:
+        requests:
+          cpu: "100m"
+          memory: "256Mi"
+        limits:
+          cpu: "500m"
+          memory: "512Mi"
+    minReplicas: 1
+    maxReplicas: 1
+    timeout: 60
+---
+# PVC for model storage (local development)
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: ml-models-pvc
+  namespace: ml-serving
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
+# Job to copy model to PVC
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: copy-model-to-pvc
+  namespace: ml-serving
+spec:
+  template:
+    spec:
+      containers:
+        - name: copy-model
+          image: busybox
+          command:
+            - sh
+            - -c
+            - |
+              echo "Waiting for model file..."
+              # This will be mounted from host in development
+              ls -la /source/
+              cp -r /source/* /models/
+              echo "Model copied successfully!"
+          volumeMounts:
+            - name: model-source
+              mountPath: /source
+            - name: model-dest
+              mountPath: /models
+      restartPolicy: Never
+      volumes:
+        - name: model-source
+          hostPath:
+            path: /hosthome/ml/models
+            type: Directory
+        - name: model-dest
+          persistentVolumeClaim:
+            claimName: ml-models-pvc
+  backoffLimit: 3
+
+

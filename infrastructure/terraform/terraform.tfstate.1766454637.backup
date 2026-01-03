@@ -1,0 +1,592 @@
+{
+  "version": 4,
+  "terraform_version": "1.9.5",
+  "serial": 10,
+  "lineage": "ff37b408-e870-6da2-6dfa-db7b0d9fc253",
+  "outputs": {
+    "kserve_endpoint": {
+      "value": "http://\u003cmodel-name\u003e.\u003cnamespace\u003e.svc.cluster.local/v1/models/\u003cmodel-name\u003e:predict",
+      "type": "string"
+    },
+    "kserve_status": {
+      "value": "KServe installed - run 'kubectl get pods -n kserve' to verify",
+      "type": "string"
+    },
+    "ml_serving_namespace": {
+      "value": "ml-serving",
+      "type": "string"
+    },
+    "namespaces": {
+      "value": {
+        "ml_serving": "ml-serving",
+        "ml_training": "ml-training"
+      },
+      "type": [
+        "object",
+        {
+          "ml_serving": "string",
+          "ml_training": "string"
+        }
+      ]
+    },
+    "next_steps": {
+      "value": "    \n✅ Infrastructure deployed!\n    \nNext steps:\n1. Verify KServe: kubectl get pods -n kserve\n2. Apply InferenceService: kubectl apply -f ../kserve/inference-service.yaml\n3. Start Temporal worker: python ../temporal/worker/main.py\n4. Trigger training: temporal workflow start --task-queue ml-pipeline --type TrainWorkflow\n    \n",
+      "type": "string"
+    }
+  },
+  "resources": [
+    {
+      "mode": "managed",
+      "type": "helm_release",
+      "name": "cert_manager",
+      "provider": "provider[\"registry.terraform.io/hashicorp/helm\"]",
+      "instances": [
+        {
+          "schema_version": 1,
+          "attributes": {
+            "atomic": false,
+            "chart": "cert-manager",
+            "cleanup_on_fail": false,
+            "create_namespace": true,
+            "dependency_update": false,
+            "description": null,
+            "devel": null,
+            "disable_crd_hooks": false,
+            "disable_openapi_validation": false,
+            "disable_webhooks": false,
+            "force_update": false,
+            "id": "cert-manager",
+            "keyring": null,
+            "lint": false,
+            "manifest": null,
+            "max_history": 0,
+            "metadata": [
+              {
+                "app_version": "v1.13.0",
+                "chart": "cert-manager",
+                "first_deployed": 1766454260,
+                "last_deployed": 1766454260,
+                "name": "cert-manager",
+                "namespace": "cert-manager",
+                "notes": "cert-manager v1.13.0 has been deployed successfully!\n\nIn order to begin issuing certificates, you will need to set up a ClusterIssuer\nor Issuer resource (for example, by creating a 'letsencrypt-staging' issuer).\n\nMore information on the different types of issuers and how to configure them\ncan be found in our documentation:\n\nhttps://cert-manager.io/docs/configuration/\n\nFor information on how to configure cert-manager to automatically provision\nCertificates for Ingress resources, take a look at the `ingress-shim`\ndocumentation:\n\nhttps://cert-manager.io/docs/usage/ingress/\n",
+                "revision": 1,
+                "values": "{\"installCRDs\":true}",
+                "version": "v1.13.0"
+              }
+            ],
+            "name": "cert-manager",
+            "namespace": "cert-manager",
+            "pass_credentials": false,
+            "postrender": [],
+            "recreate_pods": false,
+            "render_subchart_notes": true,
+            "replace": false,
+            "repository": "https://charts.jetstack.io",
+            "repository_ca_file": null,
+            "repository_cert_file": null,
+            "repository_key_file": null,
+            "repository_password": null,
+            "repository_username": null,
+            "reset_values": false,
+            "reuse_values": false,
+            "set": [
+              {
+                "name": "installCRDs",
+                "type": "",
+                "value": "true"
+              }
+            ],
+            "set_list": [],
+            "set_sensitive": [],
+            "skip_crds": false,
+            "status": "deployed",
+            "timeout": 300,
+            "upgrade_install": null,
+            "values": null,
+            "verify": false,
+            "version": "v1.13.0",
+            "wait": true,
+            "wait_for_jobs": false
+          },
+          "sensitive_attributes": [
+            [
+              {
+                "type": "get_attr",
+                "value": "repository_password"
+              }
+            ]
+          ],
+          "private": "eyJzY2hlbWFfdmVyc2lvbiI6IjEifQ=="
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "helm_release",
+      "name": "istio_base",
+      "provider": "provider[\"registry.terraform.io/hashicorp/helm\"]",
+      "instances": [
+        {
+          "schema_version": 1,
+          "attributes": {
+            "atomic": false,
+            "chart": "base",
+            "cleanup_on_fail": false,
+            "create_namespace": true,
+            "dependency_update": false,
+            "description": null,
+            "devel": null,
+            "disable_crd_hooks": false,
+            "disable_openapi_validation": false,
+            "disable_webhooks": false,
+            "force_update": false,
+            "id": "istio-base",
+            "keyring": null,
+            "lint": false,
+            "manifest": null,
+            "max_history": 0,
+            "metadata": [
+              {
+                "app_version": "1.20.0",
+                "chart": "base",
+                "first_deployed": 1766454263,
+                "last_deployed": 1766454263,
+                "name": "istio-base",
+                "namespace": "istio-system",
+                "notes": "Istio base successfully installed!\n\nTo learn more about the release, try:\n  $ helm status istio-base\n  $ helm get all istio-base\n",
+                "revision": 1,
+                "values": "{}",
+                "version": "1.20.0"
+              }
+            ],
+            "name": "istio-base",
+            "namespace": "istio-system",
+            "pass_credentials": false,
+            "postrender": [],
+            "recreate_pods": false,
+            "render_subchart_notes": true,
+            "replace": false,
+            "repository": "https://istio-release.storage.googleapis.com/charts",
+            "repository_ca_file": null,
+            "repository_cert_file": null,
+            "repository_key_file": null,
+            "repository_password": null,
+            "repository_username": null,
+            "reset_values": false,
+            "reuse_values": false,
+            "set": [],
+            "set_list": [],
+            "set_sensitive": [],
+            "skip_crds": false,
+            "status": "deployed",
+            "timeout": 300,
+            "upgrade_install": null,
+            "values": null,
+            "verify": false,
+            "version": "1.20.0",
+            "wait": true,
+            "wait_for_jobs": false
+          },
+          "sensitive_attributes": [
+            [
+              {
+                "type": "get_attr",
+                "value": "repository_password"
+              }
+            ]
+          ],
+          "private": "eyJzY2hlbWFfdmVyc2lvbiI6IjEifQ=="
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "helm_release",
+      "name": "istio_ingress",
+      "provider": "provider[\"registry.terraform.io/hashicorp/helm\"]",
+      "instances": [
+        {
+          "status": "tainted",
+          "schema_version": 1,
+          "attributes": {
+            "atomic": false,
+            "chart": "gateway",
+            "cleanup_on_fail": false,
+            "create_namespace": false,
+            "dependency_update": false,
+            "description": null,
+            "devel": null,
+            "disable_crd_hooks": false,
+            "disable_openapi_validation": false,
+            "disable_webhooks": false,
+            "force_update": false,
+            "id": "istio-ingressgateway",
+            "keyring": null,
+            "lint": false,
+            "manifest": null,
+            "max_history": 0,
+            "metadata": [
+              {
+                "app_version": "1.20.0",
+                "chart": "gateway",
+                "first_deployed": 1766454301,
+                "last_deployed": 1766454301,
+                "name": "istio-ingressgateway",
+                "namespace": "istio-system",
+                "notes": "\"istio-ingressgateway\" successfully installed!\n\nTo learn more about the release, try:\n  $ helm status istio-ingressgateway\n  $ helm get all istio-ingressgateway\n\nNext steps:\n  * Deploy an HTTP Gateway: https://istio.io/latest/docs/tasks/traffic-management/ingress/ingress-control/\n  * Deploy an HTTPS Gateway: https://istio.io/latest/docs/tasks/traffic-management/ingress/secure-ingress/\n",
+                "revision": 1,
+                "values": "{}",
+                "version": "1.20.0"
+              }
+            ],
+            "name": "istio-ingressgateway",
+            "namespace": "istio-system",
+            "pass_credentials": false,
+            "postrender": [],
+            "recreate_pods": false,
+            "render_subchart_notes": true,
+            "replace": false,
+            "repository": "https://istio-release.storage.googleapis.com/charts",
+            "repository_ca_file": null,
+            "repository_cert_file": null,
+            "repository_key_file": null,
+            "repository_password": null,
+            "repository_username": null,
+            "reset_values": false,
+            "reuse_values": false,
+            "set": [],
+            "set_list": [],
+            "set_sensitive": [],
+            "skip_crds": false,
+            "status": "failed",
+            "timeout": 300,
+            "upgrade_install": null,
+            "values": null,
+            "verify": false,
+            "version": "1.20.0",
+            "wait": true,
+            "wait_for_jobs": false
+          },
+          "sensitive_attributes": [
+            [
+              {
+                "type": "get_attr",
+                "value": "repository_password"
+              }
+            ]
+          ],
+          "private": "eyJzY2hlbWFfdmVyc2lvbiI6IjEifQ==",
+          "dependencies": [
+            "helm_release.istio_base",
+            "helm_release.istiod"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "helm_release",
+      "name": "istiod",
+      "provider": "provider[\"registry.terraform.io/hashicorp/helm\"]",
+      "instances": [
+        {
+          "schema_version": 1,
+          "attributes": {
+            "atomic": false,
+            "chart": "istiod",
+            "cleanup_on_fail": false,
+            "create_namespace": false,
+            "dependency_update": false,
+            "description": null,
+            "devel": null,
+            "disable_crd_hooks": false,
+            "disable_openapi_validation": false,
+            "disable_webhooks": false,
+            "force_update": false,
+            "id": "istiod",
+            "keyring": null,
+            "lint": false,
+            "manifest": null,
+            "max_history": 0,
+            "metadata": [
+              {
+                "app_version": "1.20.0",
+                "chart": "istiod",
+                "first_deployed": 1766454265,
+                "last_deployed": 1766454265,
+                "name": "istiod",
+                "namespace": "istio-system",
+                "notes": "\"istiod\" successfully installed!\n\nTo learn more about the release, try:\n  $ helm status istiod\n  $ helm get all istiod\n\nNext steps:\n  * Deploy a Gateway: https://istio.io/latest/docs/setup/additional-setup/gateway/\n  * Try out our tasks to get started on common configurations:\n    * https://istio.io/latest/docs/tasks/traffic-management\n    * https://istio.io/latest/docs/tasks/security/\n    * https://istio.io/latest/docs/tasks/policy-enforcement/\n  * Review the list of actively supported releases, CVE publications and our hardening guide:\n    * https://istio.io/latest/docs/releases/supported-releases/\n    * https://istio.io/latest/news/security/\n    * https://istio.io/latest/docs/ops/best-practices/security/\n\nFor further documentation see https://istio.io website\n",
+                "revision": 1,
+                "values": "{}",
+                "version": "1.20.0"
+              }
+            ],
+            "name": "istiod",
+            "namespace": "istio-system",
+            "pass_credentials": false,
+            "postrender": [],
+            "recreate_pods": false,
+            "render_subchart_notes": true,
+            "replace": false,
+            "repository": "https://istio-release.storage.googleapis.com/charts",
+            "repository_ca_file": null,
+            "repository_cert_file": null,
+            "repository_key_file": null,
+            "repository_password": null,
+            "repository_username": null,
+            "reset_values": false,
+            "reuse_values": false,
+            "set": [],
+            "set_list": [],
+            "set_sensitive": [],
+            "skip_crds": false,
+            "status": "deployed",
+            "timeout": 300,
+            "upgrade_install": null,
+            "values": null,
+            "verify": false,
+            "version": "1.20.0",
+            "wait": true,
+            "wait_for_jobs": false
+          },
+          "sensitive_attributes": [
+            [
+              {
+                "type": "get_attr",
+                "value": "repository_password"
+              }
+            ]
+          ],
+          "private": "eyJzY2hlbWFfdmVyc2lvbiI6IjEifQ==",
+          "dependencies": [
+            "helm_release.istio_base"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "kubernetes_config_map",
+      "name": "ml_config",
+      "provider": "provider[\"registry.terraform.io/hashicorp/kubernetes\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "binary_data": null,
+            "data": {
+              "MINIO_BUCKET": "ml-models",
+              "MINIO_ENDPOINT": "host.minikube.internal:9000",
+              "MODEL_NAME": "anomaly-detector",
+              "MODEL_VERSION": "v1",
+              "POSTGRES_DB": "dbt_medallion",
+              "POSTGRES_HOST": "host.minikube.internal",
+              "POSTGRES_PORT": "5433",
+              "POSTGRES_USER": "dbt_user"
+            },
+            "id": "ml-serving/ml-pipeline-config",
+            "immutable": false,
+            "metadata": [
+              {
+                "annotations": null,
+                "generate_name": "",
+                "generation": 0,
+                "labels": null,
+                "name": "ml-pipeline-config",
+                "namespace": "ml-serving",
+                "resource_version": "860",
+                "uid": "38b9c398-19bc-4233-8060-6df544d25c2a"
+              }
+            ]
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "kubernetes_namespace.ml_serving"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "kubernetes_namespace",
+      "name": "ml_serving",
+      "provider": "provider[\"registry.terraform.io/hashicorp/kubernetes\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "ml-serving",
+            "metadata": [
+              {
+                "annotations": null,
+                "generate_name": "",
+                "generation": 0,
+                "labels": {
+                  "istio-injection": "enabled"
+                },
+                "name": "ml-serving",
+                "resource_version": "854",
+                "uid": "4ba4cb12-a56c-4155-94da-a5f83b2e6ad9"
+              }
+            ],
+            "timeouts": null,
+            "wait_for_default_service_account": false
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiZGVsZXRlIjozMDAwMDAwMDAwMDB9fQ=="
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "kubernetes_namespace",
+      "name": "ml_training",
+      "provider": "provider[\"registry.terraform.io/hashicorp/kubernetes\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "ml-training",
+            "metadata": [
+              {
+                "annotations": null,
+                "generate_name": "",
+                "generation": 0,
+                "labels": null,
+                "name": "ml-training",
+                "resource_version": "853",
+                "uid": "d8688836-e9a4-40e6-89ff-2109548ea25e"
+              }
+            ],
+            "timeouts": null,
+            "wait_for_default_service_account": false
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiZGVsZXRlIjozMDAwMDAwMDAwMDB9fQ=="
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "kubernetes_secret",
+      "name": "ml_secrets",
+      "provider": "provider[\"registry.terraform.io/hashicorp/kubernetes\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "binary_data": null,
+            "binary_data_wo": null,
+            "binary_data_wo_revision": null,
+            "data": {
+              "MINIO_ACCESS_KEY": "bWluaW9hZG1pbg==",
+              "MINIO_SECRET_KEY": "bWluaW9hZG1pbg==",
+              "POSTGRES_PASSWORD": "ZGJ0X3Bhc3N3b3Jk"
+            },
+            "data_wo": null,
+            "data_wo_revision": null,
+            "id": "ml-serving/ml-pipeline-secrets",
+            "immutable": false,
+            "metadata": [
+              {
+                "annotations": null,
+                "generate_name": "",
+                "generation": 0,
+                "labels": null,
+                "name": "ml-pipeline-secrets",
+                "namespace": "ml-serving",
+                "resource_version": "859",
+                "uid": "e86883f8-b715-4cad-a1c2-a84173bdf286"
+              }
+            ],
+            "timeouts": null,
+            "type": "Opaque",
+            "wait_for_service_account_token": true
+          },
+          "sensitive_attributes": [
+            [
+              {
+                "type": "get_attr",
+                "value": "data"
+              }
+            ],
+            [
+              {
+                "type": "get_attr",
+                "value": "data"
+              },
+              {
+                "type": "index",
+                "value": {
+                  "value": "MINIO_ACCESS_KEY",
+                  "type": "string"
+                }
+              }
+            ],
+            [
+              {
+                "type": "get_attr",
+                "value": "data"
+              },
+              {
+                "type": "index",
+                "value": {
+                  "value": "MINIO_SECRET_KEY",
+                  "type": "string"
+                }
+              }
+            ],
+            [
+              {
+                "type": "get_attr",
+                "value": "data"
+              },
+              {
+                "type": "index",
+                "value": {
+                  "value": "POSTGRES_PASSWORD",
+                  "type": "string"
+                }
+              }
+            ],
+            [
+              {
+                "type": "get_attr",
+                "value": "binary_data"
+              }
+            ]
+          ],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjo2MDAwMDAwMDAwMH19",
+          "dependencies": [
+            "kubernetes_namespace.ml_serving"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "null_resource",
+      "name": "install_kserve",
+      "provider": "provider[\"registry.terraform.io/hashicorp/null\"]",
+      "instances": [
+        {
+          "status": "tainted",
+          "schema_version": 0,
+          "attributes": {
+            "id": "4844938247134986606",
+            "triggers": null
+          },
+          "sensitive_attributes": [],
+          "dependencies": [
+            "helm_release.cert_manager",
+            "helm_release.istio_base",
+            "helm_release.istiod"
+          ]
+        }
+      ]
+    }
+  ],
+  "check_results": null
+}

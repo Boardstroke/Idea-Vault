@@ -1,0 +1,55 @@
+# dbt
+dbt/target/
+dbt/dbt_packages/
+dbt/logs/
+dbt/.user.yml
+
+# Dados pessoais do Nubank - NAO COMMITAR!
+dbt/seeds/NU_*.csv
+dbt/seeds/Nubank_*.csv
+
+# Python
+.venv/
+venv/
+__pycache__/
+*.pyc
+.Python
+*.egg-info/
+dist/
+build/
+
+# ML
+ml/models/*.joblib
+ml/models/*.pkl
+ml/models/*.pt
+*.h5
+
+# Terraform
+infrastructure/.terraform/
+infrastructure/*.tfstate
+infrastructure/*.tfstate.backup
+infrastructure/.terraform.lock.hcl
+infrastructure/*.tfvars
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Kubernetes
+*.kubeconfig
+kubeconfig
+
+# Logs
+*.log
+logs/
+
+# Credentials
+.env
+.env.local
+secrets/

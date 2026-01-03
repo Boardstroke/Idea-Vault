@@ -1,0 +1,28 @@
+---
+# Service para acessar MinIO externo (Docker)
+# Isso permite que o KServe acesse o MinIO rodando no Docker
+apiVersion: v1
+kind: Service
+metadata:
+  name: minio
+  namespace: default
+spec:
+  type: ExternalName
+  externalName: host.minikube.internal
+  ports:
+    - port: 9000
+      targetPort: 9000
+---
+# Alternativa: Endpoints manuais se ExternalName não funcionar
+# apiVersion: v1
+# kind: Endpoints
+# metadata:
+#   name: minio
+#   namespace: default
+# subsets:
+#   - addresses:
+#       - ip: <HOST_IP>  # IP do host
+#     ports:
+#       - port: 9000
+
+

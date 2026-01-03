@@ -1,0 +1,100 @@
+---
+# InferenceService para o modelo de previsão de gastos (Transformer PyTorch)
+# Usa custom predictor pois é um modelo PyTorch com lógica customizada
+apiVersion: serving.kserve.io/v1beta1
+kind: InferenceService
+metadata:
+  name: spending-forecast
+  namespace: ml-serving
+  annotations:
+    # Disable tag resolution for local images
+    serving.kserve.io/enable-tag-resolution: "false"
+spec:
+  predictor:
+    serviceAccountName: kserve-minio-sa
+    containers:
+      - name: kserve-container
+        image: docker.io/library/spending-forecast:latest
+        imagePullPolicy: Never
+        ports:
+          - containerPort: 8080
+            protocol: TCP
+        env:
+          - name: STORAGE_URI
+            value: "s3://ml-models/spending-forecast"
+          - name: DATABASE_URL
+            valueFrom:
+              secretKeyRef:
+                name: postgres-secret
+                key: url
+                optional: true
+        resources:
+          requests:
+            cpu: "200m"
+            memory: "512Mi"
+          limits:
+            cpu: "1"
+            memory: "1Gi"
+        # Liveness and readiness probes
+        livenessProbe:
+          httpGet:
+            path: /v1/models/spending-forecast
+            port: 8080
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /v1/models/spending-forecast
+            port: 8080
+          initialDelaySeconds: 10
+          periodSeconds: 5
+    minReplicas: 1
+    maxReplicas: 3
+    containerConcurrency: 10
+    timeout: 120
+---
+# ConfigMap com configurações do modelo
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: forecast-config
+  namespace: ml-serving
+data:
+  MODEL_DIR: "/mnt/models"
+  SEQ_LEN: "6"
+  PRED_LEN: "3"
+  D_MODEL: "64"
+---
+# Dockerfile reference (para build da imagem)
+# Este ConfigMap serve como documentação
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: forecast-dockerfile
+  namespace: ml-serving
+data:
+  Dockerfile: |
+    FROM python:3.11-slim
+    
+    WORKDIR /app
+    
+    # Install dependencies
+    COPY ml/serving/requirements.txt .
+    RUN pip install --no-cache-dir -r requirements.txt
+    RUN pip install --no-cache-dir torch --index-url https://download.pytorch.org/whl/cpu
+    RUN pip install --no-cache-dir kserve
+    
+    # Copy model code
+    COPY ml/models/ ./models/
+    COPY ml/serving/forecast_model.py .
+    
+    # Create model directory
+    RUN mkdir -p /mnt/models
+    
+    # Expose port
+    EXPOSE 8080
+    
+    # Run model server
+    CMD ["python", "forecast_model.py"]
+
+

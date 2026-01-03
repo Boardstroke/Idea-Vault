@@ -1,0 +1,234 @@
+version: 2
+
+seeds:
+  # Extratos Bancários - Conta Corrente Nubank
+  - name: NU_19098187_01JAN2025_31JAN2025
+    description: "Extrato bancário Janeiro 2025"
+    config:
+      schema: landing
+      column_types:
+        Data: varchar
+        Valor: decimal(15,2)
+        Identificador: varchar
+        Descrição: varchar
+
+  - name: NU_19098187_01FEV2025_28FEV2025
+    description: "Extrato bancário Fevereiro 2025"
+    config:
+      schema: landing
+      column_types:
+        Data: varchar
+        Valor: decimal(15,2)
+        Identificador: varchar
+        Descrição: varchar
+
+  - name: NU_19098187_01MAR2025_31MAR2025
+    description: "Extrato bancário Março 2025"
+    config:
+      schema: landing
+      column_types:
+        Data: varchar
+        Valor: decimal(15,2)
+        Identificador: varchar
+        Descrição: varchar
+
+  - name: NU_19098187_01ABR2025_30ABR2025
+    description: "Extrato bancário Abril 2025"
+    config:
+      schema: landing
+      column_types:
+        Data: varchar
+        Valor: decimal(15,2)
+        Identificador: varchar
+        Descrição: varchar
+
+  - name: NU_19098187_01MAI2025_31MAI2025
+    description: "Extrato bancário Maio 2025"
+    config:
+      schema: landing
+      column_types:
+        Data: varchar
+        Valor: decimal(15,2)
+        Identificador: varchar
+        Descrição: varchar
+
+  - name: NU_19098187_01JUN2025_30JUN2025
+    description: "Extrato bancário Junho 2025"
+    config:
+      schema: landing
+      column_types:
+        Data: varchar
+        Valor: decimal(15,2)
+        Identificador: varchar
+        Descrição: varchar
+
+  - name: NU_19098187_01JUL2025_31JUL2025
+    description: "Extrato bancário Julho 2025"
+    config:
+      schema: landing
+      column_types:
+        Data: varchar
+        Valor: decimal(15,2)
+        Identificador: varchar
+        Descrição: varchar
+
+  - name: NU_19098187_01AGO2025_31AGO2025
+    description: "Extrato bancário Agosto 2025"
+    config:
+      schema: landing
+      column_types:
+        Data: varchar
+        Valor: decimal(15,2)
+        Identificador: varchar
+        Descrição: varchar
+
+  - name: NU_19098187_01SET2025_30SET2025
+    description: "Extrato bancário Setembro 2025"
+    config:
+      schema: landing
+      column_types:
+        Data: varchar
+        Valor: decimal(15,2)
+        Identificador: varchar
+        Descrição: varchar
+
+  - name: NU_19098187_01OUT2025_31OUT2025
+    description: "Extrato bancário Outubro 2025"
+    config:
+      schema: landing
+      column_types:
+        Data: varchar
+        Valor: decimal(15,2)
+        Identificador: varchar
+        Descrição: varchar
+
+  - name: NU_19098187_01NOV2025_30NOV2025
+    description: "Extrato bancário Novembro 2025"
+    config:
+      schema: landing
+      column_types:
+        Data: varchar
+        Valor: decimal(15,2)
+        Identificador: varchar
+        Descrição: varchar
+
+  - name: NU_19098187_01DEZ2025_21DEZ2025
+    description: "Extrato bancário Dezembro 2025"
+    config:
+      schema: landing
+      column_types:
+        Data: varchar
+        Valor: decimal(15,2)
+        Identificador: varchar
+        Descrição: varchar
+
+  # Faturas de Cartão de Crédito Nubank
+  - name: Nubank_2025-01-09
+    description: "Fatura cartão Janeiro 2025"
+    config:
+      schema: landing
+      column_types:
+        date: varchar
+        title: varchar
+        amount: decimal(15,2)
+
+  - name: Nubank_2025-02-09
+    description: "Fatura cartão Fevereiro 2025"
+    config:
+      schema: landing
+      column_types:
+        date: varchar
+        title: varchar
+        amount: decimal(15,2)
+
+  - name: Nubank_2025-03-09
+    description: "Fatura cartão Março 2025"
+    config:
+      schema: landing
+      column_types:
+        date: varchar
+        title: varchar
+        amount: decimal(15,2)
+
+  - name: Nubank_2025-04-09
+    description: "Fatura cartão Abril 2025"
+    config:
+      schema: landing
+      column_types:
+        date: varchar
+        title: varchar
+        amount: decimal(15,2)
+
+  - name: Nubank_2025-05-09
+    description: "Fatura cartão Maio 2025"
+    config:
+      schema: landing
+      column_types:
+        date: varchar
+        title: varchar
+        amount: decimal(15,2)
+
+  - name: Nubank_2025-06-09
+    description: "Fatura cartão Junho 2025"
+    config:
+      schema: landing
+      column_types:
+        date: varchar
+        title: varchar
+        amount: decimal(15,2)
+
+  - name: Nubank_2025-07-09
+    description: "Fatura cartão Julho 2025"
+    config:
+      schema: landing
+      column_types:
+        date: varchar
+        title: varchar
+        amount: decimal(15,2)
+
+  - name: Nubank_2025-08-09
+    description: "Fatura cartão Agosto 2025"
+    config:
+      schema: landing
+      column_types:
+        date: varchar
+        title: varchar
+        amount: decimal(15,2)
+
+  - name: Nubank_2025-09-09
+    description: "Fatura cartão Setembro 2025"
+    config:
+      schema: landing
+      column_types:
+        date: varchar
+        title: varchar
+        amount: decimal(15,2)
+
+  - name: Nubank_2025-10-09
+    description: "Fatura cartão Outubro 2025"
+    config:
+      schema: landing
+      column_types:
+        date: varchar
+        title: varchar
+        amount: decimal(15,2)
+
+  - name: Nubank_2025-11-09
+    description: "Fatura cartão Novembro 2025"
+    config:
+      schema: landing
+      column_types:
+        date: varchar
+        title: varchar
+        amount: decimal(15,2)
+
+  - name: Nubank_2025-12-09
+    description: "Fatura cartão Dezembro 2025"
+    config:
+      schema: landing
+      column_types:
+        date: varchar
+        title: varchar
+        amount: decimal(15,2)
+
+

@@ -1,0 +1,60 @@
+name: 'dbt_medallion'
+version: '1.0.0'
+config-version: 2
+
+# Este é o perfil que será usado para conexão com o banco
+profile: 'dbt_medallion'
+
+# Diretórios do projeto
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+# Configuração dos modelos por camada
+models:
+  dbt_medallion:
+    # Camada bronze - dados brutos com deduplicação
+    bronze:
+      +schema: bronze
+      +materialized: view
+      +tags: ['bronze']
+    
+    # Camada silver - dados limpos e enriquecidos
+    silver:
+      +schema: silver
+      +materialized: table
+      +tags: ['silver']
+      
+      dimensions:
+        +tags: ['dimension']
+      
+      facts:
+        +tags: ['fact']
+    
+    # Camada gold - agregações e métricas
+    gold:
+      +schema: gold
+      +materialized: table
+      +tags: ['gold']
+
+# Configuração dos seeds (landing zone)
+seeds:
+  dbt_medallion:
+    +schema: landing
+    +quote_columns: false
+
+# Variáveis globais do projeto
+vars:
+  # Data de corte para testes (pode ser sobrescrita na execução)
+  cutoff_date: '2024-01-01'
+  # Limite para detecção de anomalias de valor
+  anomaly_threshold: 50000
+  # Dias para considerar late arriving
+  late_arriving_days: 90

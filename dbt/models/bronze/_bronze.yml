@@ -1,0 +1,87 @@
+version: 2
+
+sources:
+  - name: landing
+    description: "Landing layer - Raw transactions uploaded via interface"
+    schema: landing
+    tables:
+      - name: raw_transactions
+        description: "Unified raw transactions from all datasources"
+        columns:
+          - name: id
+            description: "Auto-increment primary key"
+          - name: datasource_id
+            description: "ID of the datasource (nubank_extrato, nubank_fatura, etc.)"
+          - name: transaction_hash
+            description: "Unique hash for deduplication"
+          - name: data_transacao
+            description: "Transaction date"
+          - name: valor
+            description: "Transaction value"
+          - name: descricao
+            description: "Transaction description"
+          - name: dados_raw
+            description: "Original raw data as JSONB"
+          - name: upload_id
+            description: "Reference to the upload record"
+          - name: created_at
+            description: "Timestamp when record was created"
+
+models:
+  - name: brz_extrato_bancario
+    description: "Bronze Layer: Unifica os 12 CSVs de extrato bancário Nubank"
+    columns:
+      - name: transaction_id
+        description: "Identificador único da transação (UUID)"
+        tests:
+          - unique:
+              config:
+                severity: warn
+          - not_null
+      - name: data_transacao
+        description: "Data da transação"
+        tests:
+          - not_null
+      - name: valor
+        description: "Valor da transação (positivo = entrada, negativo = saída)"
+      - name: descricao
+        description: "Descrição original da transação"
+      - name: tipo_transacao
+        description: "Tipo: pix_enviado, pix_recebido, pagamento_fatura, etc."
+      - name: beneficiario
+        description: "Nome do beneficiário/pagador extraído da descrição"
+      - name: is_entrada
+        description: "Flag se é entrada de dinheiro"
+      - name: is_saida
+        description: "Flag se é saída de dinheiro"
+
+  - name: brz_fatura_cartao
+    description: "Bronze Layer: Unifica os 12 CSVs de fatura de cartão Nubank"
+    columns:
+      - name: transaction_id
+        description: "Hash MD5 gerado para identificar a transação"
+        tests:
+          - not_null
+      - name: data_transacao
+        description: "Data da transação"
+        tests:
+          - not_null
+      - name: valor
+        description: "Valor da transação"
+      - name: titulo
+        description: "Título/descrição da transação"
+      - name: is_parcelado
+        description: "Flag se é compra parcelada"
+      - name: parcela_atual
+        description: "Número da parcela atual (se parcelado)"
+      - name: total_parcelas
+        description: "Total de parcelas (se parcelado)"
+      - name: estabelecimento
+        description: "Nome do estabelecimento (sem informação de parcela)"
+      - name: is_iof
+        description: "Flag se é cobrança de IOF"
+      - name: is_pagamento
+        description: "Flag se é pagamento recebido"
+      - name: is_estorno
+        description: "Flag se é estorno"
+

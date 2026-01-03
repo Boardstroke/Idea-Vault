@@ -1,0 +1,26 @@
+version: 2
+
+sources:
+  - name: ml_output
+    description: "Predictions geradas pelo modelo de ML"
+    schema: ml_output
+    freshness:
+      warn_after: {count: 1, period: hour}
+      error_after: {count: 24, period: hour}
+    tables:
+      - name: anomaly_predictions
+        description: "Predictions de anomalia geradas pelo modelo Isolation Forest via KServe"
+        loaded_at_field: predicted_at
+        columns:
+          - name: prediction_id
+            description: "Identificador único da prediction"
+          - name: transaction_id
+            description: "ID da transação analisada"
+          - name: anomaly_score
+            description: "Score de anomalia (0-1, maior = mais anômalo)"
+          - name: is_anomaly
+            description: "Flag indicando se é anomalia (true/false)"
+          - name: model_version
+            description: "Versão do modelo que gerou a prediction"
+          - name: predicted_at
+            description: "Timestamp da prediction"

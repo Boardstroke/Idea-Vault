@@ -1,0 +1,132 @@
+version: 2
+
+models:
+  # Dimensions
+  - name: dim_categorias
+    description: "Silver Layer: Dimensão de categorias com regras de classificação automática"
+    columns:
+      - name: categoria_id
+        description: "Identificador único da categoria"
+        tests:
+          - unique
+          - not_null
+      - name: categoria_nome
+        description: "Nome legível da categoria"
+      - name: palavras_chave
+        description: "Array de palavras-chave para matching"
+
+  - name: dim_beneficiarios
+    description: "Silver Layer: Dimensão de beneficiários Pix"
+    columns:
+      - name: beneficiario_id
+        description: "Hash MD5 do nome do beneficiário"
+        tests:
+          - unique
+          - not_null
+      - name: nome_beneficiario
+        description: "Nome do beneficiário"
+      - name: total_transacoes
+        description: "Total de transações com este beneficiário"
+      - name: total_enviado
+        description: "Total enviado para este beneficiário"
+      - name: total_recebido
+        description: "Total recebido deste beneficiário"
+      - name: frequencia_classificacao
+        description: "Classificação: frequente, recorrente, esporadico"
+
+  - name: dim_vendors
+    description: "Silver Layer: Dimensão de vendors/estabelecimentos para enriquecimento com logos e ícones"
+    columns:
+      - name: vendor_id
+        description: "ID único do vendor (slug)"
+      - name: vendor_nome
+        description: "Nome de exibição do vendor"
+      - name: keyword
+        description: "Palavra-chave para match (expandida do CSV)"
+      - name: logo_url
+        description: "URL do logo via Google Favicon API"
+      - name: icone_emoji
+        description: "Emoji de fallback"
+      - name: cor_hex
+        description: "Cor principal da marca em hexadecimal"
+      - name: categoria_sugerida
+        description: "Categoria sugerida baseada no tipo de vendor"
+      - name: keyword_length
+        description: "Comprimento da keyword para priorização de matches"
+
+  # Facts
+  - name: fct_transacoes
+    description: "Silver Layer: Fato de transações consolidando extrato e cartão, com enriquecimento de vendors"
+    columns:
+      - name: transaction_id
+        description: "Identificador único da transação"
+        tests:
+          - not_null
+      - name: data_transacao
+        description: "Data da transação"
+        tests:
+          - not_null
+      - name: valor
+        description: "Valor da transação (negativo = saída)"
+      - name: valor_absoluto
+        description: "Valor absoluto da transação"
+      - name: categoria_id
+        description: "ID da categoria inferida"
+      - name: categoria_nome
+        description: "Nome da categoria"
+      - name: fonte
+        description: "Fonte: conta_corrente ou cartao_credito"
+        tests:
+          - accepted_values:
+              values: ['conta_corrente', 'cartao_credito']
+      - name: vendor_id
+        description: "ID do vendor identificado (pode ser null)"
+      - name: vendor_nome
+        description: "Nome do vendor identificado"
+      - name: vendor_logo_url
+        description: "URL do logo do vendor via Google Favicon"
+      - name: vendor_icone
+        description: "Emoji de fallback do vendor"
+      - name: vendor_cor
+        description: "Cor hexadecimal da marca do vendor"
+
+  - name: fct_assinaturas
+    description: "Silver Layer: Fato de assinaturas recorrentes"
+    columns:
+      - name: assinatura_id
+        description: "Hash MD5 do nome do serviço"
+        tests:
+          - unique:
+              config:
+                severity: warn
+          - not_null
+      - name: servico_nome
+        description: "Nome normalizado do serviço"
+      - name: status
+        description: "Status: ativa, inativa_recente, cancelada"
+      - name: valor_medio
+        description: "Valor médio da cobrança"
+      - name: custo_anual_estimado
+        description: "Custo anual estimado (valor_medio * 12)"
+
+  - name: fct_parcelas
+    description: "Silver Layer: Fato de compras parceladas"
+    columns:
+      - name: compra_id
+        description: "Hash MD5 identificando a compra"
+        tests:
+          - unique
+          - not_null
+      - name: estabelecimento
+        description: "Nome do estabelecimento"
+      - name: total_parcelas
+        description: "Total de parcelas da compra"
+      - name: parcelas_pagas
+        description: "Quantidade de parcelas já pagas"
+      - name: parcelas_restantes
+        description: "Quantidade de parcelas restantes"
+      - name: valor_total_compra
+        description: "Valor total da compra"
+      - name: status_compra
+        description: "Status: quitada ou em_andamento"
+

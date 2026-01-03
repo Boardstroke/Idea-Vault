@@ -1,0 +1,23 @@
+version: 2
+
+seeds:
+  - name: vendors
+    description: "Mapeamento de vendors/estabelecimentos para enriquecimento de transações com logos e ícones"
+    config:
+      schema: landing
+    columns:
+      - name: vendor_id
+        description: "ID único do vendor (slug)"
+      - name: vendor_nome
+        description: "Nome de exibição do vendor"
+      - name: keywords
+        description: "Lista de palavras-chave separadas por vírgula para match na descrição da transação"
+      - name: logo_url
+        description: "URL do logo via Google Favicon API"
+      - name: icone_emoji
+        description: "Emoji de fallback caso o logo não carregue"
+      - name: cor_hex
+        description: "Cor principal da marca em hexadecimal"
+      - name: categoria_sugerida
+        description: "Categoria sugerida baseada no tipo de vendor"
+

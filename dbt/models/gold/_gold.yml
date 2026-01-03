@@ -1,0 +1,110 @@
+version: 2
+
+models:
+  - name: gld_balanco_mensal
+    description: "Gold Layer: Balanço financeiro mensal com entradas, saídas e saldo"
+    columns:
+      - name: ano_mes
+        description: "Ano-mês no formato YYYY-MM"
+        tests:
+          - unique
+          - not_null
+      - name: total_entradas
+        description: "Total de entradas no mês"
+      - name: total_saidas
+        description: "Total de saídas no mês"
+      - name: saldo_mensal
+        description: "Saldo do mês (entradas - saídas)"
+      - name: saldo_acumulado
+        description: "Saldo acumulado desde o início"
+      - name: taxa_poupanca_pct
+        description: "Percentual de poupança ((entradas - saídas) / entradas)"
+      - name: status_mes
+        description: "Status: superavit, deficit ou equilibrado"
+
+  - name: gld_gastos_categoria
+    description: "Gold Layer: Análise de gastos por categoria"
+    columns:
+      - name: ano_mes
+        description: "Ano-mês no formato YYYY-MM"
+      - name: categoria_id
+        description: "ID da categoria"
+      - name: categoria_nome
+        description: "Nome da categoria"
+      - name: total_gasto
+        description: "Total gasto na categoria no mês"
+      - name: percentual_do_total
+        description: "Percentual do gasto total do mês"
+      - name: media_movel_3m
+        description: "Média móvel dos últimos 3 meses"
+      - name: tendencia
+        description: "Tendência: aumentando, diminuindo, estavel"
+
+  - name: gld_resumo_assinaturas
+    description: "Gold Layer: Resumo de assinaturas ativas e canceladas"
+    columns:
+      - name: assinatura_id
+        description: "ID da assinatura"
+        tests:
+          - unique:
+              config:
+                severity: warn
+          - not_null
+      - name: servico_nome
+        description: "Nome do serviço"
+      - name: status
+        description: "Status: ativa, inativa_recente, cancelada"
+      - name: tipo_servico
+        description: "Tipo: streaming_video, ferramentas_dev, etc."
+      - name: valor_mensal
+        description: "Valor médio mensal"
+      - name: custo_anual_estimado
+        description: "Custo anual estimado"
+
+  - name: gld_top_beneficiarios
+    description: "Gold Layer: Top 50 beneficiários por valor transferido"
+    columns:
+      - name: beneficiario_id
+        description: "ID do beneficiário"
+        tests:
+          - unique
+          - not_null
+      - name: nome_beneficiario
+        description: "Nome do beneficiário"
+      - name: total_enviado
+        description: "Total enviado para este beneficiário"
+      - name: total_recebido
+        description: "Total recebido deste beneficiário"
+      - name: ranking_por_valor
+        description: "Ranking por valor enviado"
+      - name: ranking_por_frequencia
+        description: "Ranking por frequência de transações"
+
+  - name: gld_anomalias_ml
+    description: "Gold Layer: Transações com indicativo de anomalia"
+    columns:
+      - name: transaction_id
+        description: "ID da transação"
+      - name: anomaly_score
+        description: "Score de anomalia (0-100)"
+      - name: is_anomaly
+        description: "Flag se é considerada anomalia (score >= 50)"
+      - name: severidade
+        description: "Severidade: alta, media, baixa, normal"
+      - name: motivos_anomalia
+        description: "Array com os motivos da classificação"
+
+  - name: gld_previsao_gastos
+    description: "Gold Layer: Projeção de gastos futuros"
+    columns:
+      - name: ano_mes
+        description: "Mês da projeção"
+      - name: descricao
+        description: "Descrição do gasto"
+      - name: valor_previsto
+        description: "Valor previsto"
+      - name: tipo_gasto
+        description: "Tipo: assinatura, parcela, variavel"
+      - name: confianca
+        description: "Nível de confiança: alta, media"
+
